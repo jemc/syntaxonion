@@ -17,6 +17,7 @@ class SyntaxOnion:
             if re.search(c, text): 
                 raise SyntaxError("Illegal (reserved) character '"+c+
                                     "' in input file.")
+
     def __init__(self, text):
         self.text = text
         self.patterns = []
@@ -46,4 +47,8 @@ class SyntaxOnion:
         for m in matchlist:
             self.text = re.sub(self.dead_patt(layer), 
                                m.group(), self.text, count=1)
+
+    def peels(self, patterns): [self.peel(p) for p in patterns]
+
+    def repeal_all(self): [self.repeal() for i in range(len(self.matchlists))]
 
